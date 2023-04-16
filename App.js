@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, Linking} from 'react-native';
 import styles from './android/components/style.js';
 import { useState } from 'react';
 import email from 'react-native-email';
@@ -22,11 +22,12 @@ export default function App() {
       }
       else{
         Alert.alert(`Thank You ${name}`);
-        const to = ['info@redpositive.in']
-        email(to, {
-          subject: `Contacting Redpositive`,
-          body: `${message} \n\n Regards,\n${name}\n${phone}`
-      }).catch(console.error);
+      //   const to = ['info@redpositive.in']
+      //   email(to, {
+      //     subject: `Contacting Redpositive`,
+      //     body: `${message} \n\n Regards,\n${name}\n${phone}`
+      // }).catch(console.error);
+      Linking.openURL(`mailto:info@redpositive.in?subject=Contacting Redpositive&body=${message} \n\n Regards,\n${name}\n${phone}`);
       }
     }
   };
